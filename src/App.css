@@ -1,0 +1,21 @@
+.App {
+  min-height: 100vh;
+  background-color: #0f171e;
+  color: white;
+}
+
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading, .error, .no-movies {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #ff6b6b;
+}
