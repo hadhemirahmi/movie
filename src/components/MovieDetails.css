@@ -12,8 +12,8 @@
 }
 
 .movie-details-content {
-  background-color: #1a242f;
-  border-radius: 10px;
+  background-color: #1a242f00;
+  border-radius: 30px;
   max-width: 800px;
   width: 90%;
   max-height: 90vh;

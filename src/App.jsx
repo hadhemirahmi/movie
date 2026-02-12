@@ -1,33 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import MovieList from './components/MovieList';
-import MovieDetails from './components/MovieDetails';
+import HomePage from './pages/HomePage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
 import './App.css';
 
 function App() {
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const handleMovieSelect = (movie) => {
-    setSelectedMovie(movie);
-  };
-
-  const handleCloseDetails = () => {
-    setSelectedMovie(null);
-  };
-
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <MovieList onMovieSelect={handleMovieSelect} />
-      </main>
-      {selectedMovie && (
-        <MovieDetails 
-          movie={selectedMovie} 
-          onClose={handleCloseDetails}
-        />
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movie/:id" element={<MovieDetailsPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,52 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { fetchPopularMovies } from '../services/tmdb';
 import MovieCard from './MovieCard';
+import SearchBar from './SearchBar';
+import useMovieStore from '../store/movieStore';
 import './MovieList.css';
 
-const MovieList = ({ onMovieSelect }) => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const MovieList = () => {
+  const { 
+    popularMovies, 
+    searchResults, 
+    searchQuery,
+    isLoading, 
+    error,
+    setPopularMovies,
+    setIsLoading,
+    setError
+  } = useMovieStore();
 
   useEffect(() => {
-    const getMovies = async () => {
+    const getPopularMovies = async () => {
+      setIsLoading(true);
       try {
-        setLoading(true);
-        const data = await fetchPopularMovies();
-        setMovies(data);
-        setError(null);
+        const movies = await fetchPopularMovies();
+        setPopularMovies(movies);
       } catch (err) {
-        setError('Failed to load movies. Please try again later.');
-        console.error(err);
+        setError('Failed to load popular movies');
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
-    getMovies();
-  }, []);
+    getPopularMovies();
+  }, [setPopularMovies, setIsLoading, setError]);
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
+  const displayMovies = searchResults.length > 0 ? searchResults : popularMovies;
+  const title = searchResults.length > 0 
+    ? `Search Results (${searchResults.length})` 
+    : 'Popular Movies';
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
-
-  if (movies.length === 0) {
-    return <div className="no-movies">No movies found</div>;
+  if (isLoading && displayMovies.length === 0) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading movies...</p>
+      </div>
+    );
   }
 
   return (
-    <div className="movie-list">
-      {movies.map((movie) => (
-        <MovieCard 
-          key={movie.id} 
-          movie={movie} 
-          onClick={onMovieSelect}
-        />
-      ))}
+    <div className="movie-list-container">
+      <SearchBar />
+      
+      {error && (
+        <div className="error-container">
+          <p>{error}</p>
+        </div>
+      )}
+      
+      <div className="movie-list-header">
+        <h2>{title}</h2>
+        {searchResults.length > 0 && (
+          <button 
+            className="clear-search-btn"
+            onClick={() => useMovieStore.getState().clearSearch()}
+          >
+            Clear Search
+          </button>
+        )}
+      </div>
+      
+      {displayMovies.length === 0 ? (
+        <div className="no-results">
+          <p>No movies found</p>
+          {searchQuery && <p>Try searching for something else</p>}
+        </div>
+      ) : (
+        <div className="movie-grid">
+          {displayMovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
