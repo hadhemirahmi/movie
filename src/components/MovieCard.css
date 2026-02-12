@@ -192,7 +192,7 @@
 
 @media (max-width: 768px) {
   .movie-card {
-    max-width: 240px;
+    max-width: 100px;
     border-radius: 12px;
   }
 
@@ -233,7 +233,7 @@
   }
 
   .movie-title {
-    font-size: 10px !important;
+    font-size: 20px !important;
     min-height: 2.6rem;
     margin-bottom: 0.5rem;
   }
