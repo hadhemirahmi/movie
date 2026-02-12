@@ -31,14 +31,6 @@ Ce projet met en pratique :
 
 ---
 
-## 🚀 Démo
-
-👉 Ajouter ici le lien vers votre déploiement :
-
-https://your-live-demo-link.com
-
-
----
 
 # ✨ Fonctionnalités
 
