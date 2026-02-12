@@ -1,35 +1,130 @@
-# React + Vite
+# 🎬 Simple Movies App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Application React moderne permettant de découvrir les films populaires via l'API TMDB.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=react&logoColor=white)
+![TMDB](https://img.shields.io/badge/TMDB-01B4E4?style=for-the-badge&logo=the-movie-database&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 Description
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Simple Movies App** est une application développée avec **React + Vite** permettant de :
 
-## Expanding the ESLint configuration
+- 🎥 Explorer les films populaires
+- 🔍 Rechercher des films
+- 📄 Consulter les détails complets
+- 🎬 Regarder les bandes-annonces YouTube
+- 📱 Profiter d’un design responsive moderne
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Ce projet met en pratique :
 
-# Simple Movies App
+- React Router
+- Zustand (gestion d’état globale)
+- API REST (TMDB)
+- Hooks React
+- Architecture modulaire
+- Responsive Design
 
-Une application React simple qui affiche les films populaires en utilisant l'API TMDB.
+---
 
-## Fonctionnalités
+## 🚀 Démo
 
-- Affichage des films populaires
-- Cartes de films avec poster, titre et année
-- Détails des films au clic
-- Interface responsive
-- Gestion des états de chargement et d'erreur
+👉 Ajouter ici le lien vers votre déploiement :
 
-## Installation
+https://your-live-demo-link.com
 
-1. Clonez le projet
-2. Installez les dépendances :
+
+---
+
+# ✨ Fonctionnalités
+
+## 🔹 Fonctionnalités principales
+
+- 🏠 Page d’accueil avec films populaires
+- 🔍 Recherche dynamique
+- 📄 Page détails `/movie/:id`
+- 🎬 Intégration des trailers YouTube
+- ⭐ Affichage des notes TMDB
+- 📅 Année de sortie
+- 🔄 Gestion du loading
+- ❌ Gestion des erreurs API
+- 🖼️ Image fallback si poster indisponible
+
+---
+
+# 🛠️ Technologies utilisées
+
+## Frontend
+
+- ⚛️ React 18
+- ⚡ Vite
+- 🧭 React Router DOM v6
+- 🐻 Zustand
+- 🎨 CSS3 (Flexbox, Grid)
+
+## API
+
+- 🎬 TMDB API (The Movie Database)
+
+---
+
+# 📁 Structure du projet
+
+simple-movies-app/
+│
+├── public/
+│
+├── src/
+│ ├── components/
+│ │ ├── MovieCard.jsx
+│ │ ├── MovieList.jsx
+│ │ └── SearchBar.jsx
+│ │
+│ ├── pages/
+│ │ ├── HomePage.jsx
+│ │ └── MovieDetailsPage.jsx
+│ │
+│ ├── store/
+│ │ └── movieStore.js
+│ │
+│ ├── services/
+│ │ └── tmdbApi.js
+│ │
+│ ├── App.jsx
+│ ├── main.jsx
+│ └── index.css
+│
+├── .env
+├── package.json
+└── README.md
+
+
+---
+
+# ⚙️ Installation
+
+## 1️⃣ Cloner le projet
+
 ```bash
+git clone https://github.com/your-username/simple-movies-app.git
+cd simple-movies-app
+2️⃣ Installer les dépendances
 npm install
+3️⃣ Configurer la clé API TMDB
+Créer un fichier .env à la racine :
+
+VITE_TMDB_API_KEY=your_api_key_here
+👉 Obtenir votre clé API sur :
+https://www.themoviedb.org/settings/api
+
+⚠️ Ne jamais commit votre clé API sur GitHub.
+
+4️⃣ Lancer le projet
+npm run dev
+Ouvrir :
+
+http://localhost:5173
