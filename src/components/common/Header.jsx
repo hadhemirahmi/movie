@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useMovieStore from '../../store/movieStore'
 import ThemeToggle from '../ui/ThemeToggle'
+import { FaBars, FaTimes } from "react-icons/fa"
 import './Header.css'
 
 const Header = () => {
@@ -19,6 +20,9 @@ const Header = () => {
         <Link to="/" className="logo">
           Simple Movies
         </Link>
+         <div className="menu-toggle" onClick={toggleMenu}>
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </div>
         
         <nav className="nav-links">
           <Link to="/" className="nav-link">Accueil</Link>
