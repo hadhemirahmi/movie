@@ -1,3 +1,5 @@
+/* ================= HEADER ================= */
+
 .header {
   background-color: #1a1a2e9d;
   padding: 1rem 2rem;
@@ -6,41 +8,7 @@
   z-index: 100;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #ffffff;
-}
-.logout-btn {
-  padding: 0.5rem 1rem;
-  background: var(--secondary-500, #ff6b6b);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.login-link{
-  padding: 0.5rem 1rem;
-  background: var(--primary-500, #00a8ff);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.favorites-badge {
-  color:#00a8ff;
-  border-radius: 12px;
-  padding: 0.2rem 0.6rem;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: -50px;
-}
+
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -48,6 +16,8 @@
   justify-content: space-between;
   align-items: center;
 }
+
+/* ================= LOGO ================= */
 
 .logo {
   font-size: 1.8rem;
@@ -61,9 +31,12 @@
   color: #ff6b6b;
 }
 
+/* ================= NAVIGATION ================= */
+
 .nav-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-link {
@@ -71,36 +44,89 @@
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.3s ease;
+  position: relative;
 }
 
 .nav-link:hover {
   color: #00a8ff;
 }
 
+/* ================= FAVORITES BADGE ================= */
+
+.favorites-badge {
+  color: #00a8ff;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+/* ================= ACTIONS ================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ffffff;
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: var(--secondary-500, #ff6b6b);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  opacity: 0.85;
+}
+
+.login-link {
+  padding: 0.5rem 1rem;
+  background: var(--primary-500, #00a8ff);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-link:hover {
+  opacity: 0.85;
+}
+
+/* ================= BURGER MENU ================= */
+
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
 @media (max-width: 768px) {
+
   .header {
     padding: 1rem;
   }
-  
+
   .logo {
     font-size: 1.4rem;
   }
-  
-  .nav-links {
-    gap: 1rem;
-  }
-}
-
-
-@media (max-width: 768px) {
 
   .menu-toggle {
-    display: block;
+    display: block; /* Show burger on mobile */
   }
 
   .nav-links {
     position: absolute;
-    top: 65px;
+    top: 70px;
     left: 0;
     width: 100%;
     background: #111;
@@ -109,6 +135,7 @@
     gap: 20px;
     padding: 20px 0;
     display: none;
+    transition: all 0.3s ease;
   }
 
   .nav-links.active {
@@ -116,7 +143,7 @@
   }
 
   .header-actions {
-    display: none;
+    display: none; /* Hide desktop actions */
   }
 
   .mobile-actions {
