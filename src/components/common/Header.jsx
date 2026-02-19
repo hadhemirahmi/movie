@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useMovieStore from '../../store/movieStore'
 import ThemeToggle from '../ui/ThemeToggle'
@@ -9,31 +9,53 @@ const Header = () => {
   const { isAuth, logout, favorites } = useMovieStore()
   const navigate = useNavigate()
 
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   const handleLogout = () => {
     logout()
+    setMenuOpen(false) 
     navigate('/')
   }
 
   return (
     <header className="header">
       <div className="header-container">
+
         <Link to="/" className="logo">
           Simple Movies
         </Link>
-         <div className="menu-toggle" onClick={toggleMenu}>
+
+        <div className="menu-toggle" onClick={toggleMenu}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
-        
-        <nav className="nav-links">
-          <Link to="/" className="nav-link">Accueil</Link>
-          <Link to="/favorites" className="nav-link">
+
+        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <Link 
+            to="/" 
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Accueil
+          </Link>
+
+          <Link 
+            to="/favorites" 
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
             Favoris
             {favorites.length > 0 && (
-              <span className="favorites-badge">{favorites.length}</span>
+              <span className="favorites-badge">
+                {favorites.length}
+              </span>
             )}
           </Link>
         </nav>
-        
+
         <div className="header-actions">
           <ThemeToggle />
           
@@ -47,6 +69,7 @@ const Header = () => {
             </Link>
           )}
         </div>
+
       </div>
     </header>
   )
