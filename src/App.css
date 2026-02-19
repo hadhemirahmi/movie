@@ -1,32 +1,206 @@
+
 .App {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+[data-theme="light"] .movie-card {
+  background: linear-gradient(145deg, #e6f0ff, #d4e4ff);
+
+  box-shadow: 0 4px 15px rgba(0, 100, 200, 0.1);
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+[data-theme="light"] .movie-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 100, 200, 0.2);
+  border-color: var(--primary-500);
+}
+
+[data-theme="light"] .movie-title {
+  color: #000000;
+}
+
+[data-theme="light"] .movie-year {
+  color: #333333;
+}
+
+[data-theme="light"] .movie-rating-badge {
+  background: linear-gradient(135deg, #2ea8ff, #5cb8ff);
   color: white;
 }
 
-/* Scrollbar personnalisée */
-::-webkit-scrollbar {
-  width: 10px;
+[data-theme="light"] .header {
+  background: #80c0f786;
+  box-shadow: 0 2px 10px rgba(0, 100, 200, 0.1);
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a2e;
+[data-theme="light"] .logo {
+  color: #0066cc;
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #00a8ff, #0097e6);
-  border-radius: 5px;
+[data-theme="light"] .nav-link {
+  color: #333333;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #0097e6; }
+[data-theme="light"] .nav-link:hover {
+  color: #0066cc;
+}
+
+
+[data-theme="light"] .search-input {
+  background: #ffffff;
+  border: 2px solid #e6f0ff;
+  color: #000000;
+}
+
+[data-theme="light"] .search-input:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="light"] .search-button {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  color: white;
+}
+
+[data-theme="light"] .movie-details-content {
+  background: #ffffff73;
+  box-shadow: 0 10px 30px rgba(0, 100, 200, 0.15);
+}
+
+[data-theme="light"] .movie-tagline {
+  color: #333333;
+}
+
+[data-theme="light"] .meta-item {
+  background: #f0f7ff;
+  border: 1px solid rgba(0, 100, 200, 0.2);
+  color: #333333;
+}
+
+[data-theme="light"] .genre-tag {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  color: white;
+}
+
+[data-theme="light"] .movie-overview {
+  color: #333333;
+}
+
+[data-theme="light"] .movie-overview h3 {
+  color: #0066cc;
+}
+
+[data-theme="light"] .movie-overview p {
+  color: #444444;
+}
+
+
+[data-theme="light"] .favorites-header h1 {
+  color: #0066cc;
+}
+
+[data-theme="light"] .favorites-count {
+  color: #333333;
+}
+
+[data-theme="light"] .favorites-empty {
+  background: #ffffff;
+}
+
+[data-theme="light"] .favorites-empty h2 {
+  color: #0066cc;
+}
+
+[data-theme="light"] .favorites-empty p {
+  color: #333333;
+}
+
+
+[data-theme="light"] .login-card {
+  background: #abdceb7d;
+  border: 1px solid rgba(0, 100, 200, 0.2);
+}
+
+[data-theme="light"] .login-card h2 {
+  color: #0066cc;
+}
+
+[data-theme="light"] .form-group label {
+  color: #333333;
+}
+
+[data-theme="light"] .form-group input {
+  background: #ffffff;
+  border: 2px solid #e6f0ff;
+  color: #000000;
+}
+
+[data-theme="light"] .form-group input:focus {
+  border-color: #0066cc;
+}
+
+[data-theme="light"] .login-button {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  color: white;
+}
+
+[data-theme="light"] .login-hint {
+  background: #f0f7ff;
+  color: #333333;
+}
+
+[data-theme="light"] .favorite-btn {
+  background: #ffffff;
+  border: 2px solid #e6f0ff;
+  color: #333333;
+}
+
+[data-theme="light"] .favorite-btn.active {
+  background: linear-gradient(135deg, #ff6b6b, #ff5252);
+  color: white;
+}
+
+[data-theme="light"] .favorite-btn:hover {
+  border-color: #0066cc;
+}
+
+[data-theme="light"] .logout-btn,
+[data-theme="light"] .login-link {
+  border: 2px solid #e6f0ff;
+  color: #333333;
+}
+
+[data-theme="light"] .logout-btn:hover,
+[data-theme="light"] .login-link:hover {
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+[data-theme="light"] .error-container {
+  background: rgba(255, 82, 82, 0.1);
+  border-left-color: #ff5252;
+  color: #ff5252;
+}
+
+[data-theme="light"] .no-results {
+  background: #ffffff;
+  color: #333333;
+}
+
+[data-theme="light"] .no-results p:first-child {
+  color: #0066cc;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f0f7ff;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0052a3, #004080);
+}

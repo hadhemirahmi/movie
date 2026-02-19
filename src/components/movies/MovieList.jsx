@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
-import { fetchPopularMovies } from '../services/tmdb';
+import { fetchPopularMovies } from '../../services/tmdb';
 import MovieCard from './MovieCard';
 import SearchBar from './SearchBar';
-import useMovieStore from '../store/movieStore';
+import useMovieStore from '../../store/movieStore';
 import './MovieList.css';
 
 const MovieList = () => {
   const { 
-    popularMovies, 
-    searchResults, 
-    searchQuery,
-    isLoading, 
-    error,
+    popularMovies = [], // Valeur par défaut si undefined
+    searchResults = [], // Valeur par défaut si undefined
+    searchQuery = '',
+    isLoading = false, 
+    error = null,
     setPopularMovies,
     setIsLoading,
-    setError
+    setError,
+    clearSearch
   } = useMovieStore();
 
   useEffect(() => {
@@ -22,9 +23,10 @@ const MovieList = () => {
       setIsLoading(true);
       try {
         const movies = await fetchPopularMovies();
-        setPopularMovies(movies);
+        setPopularMovies(movies || []); // S'assurer que c'est un tableau
       } catch (err) {
         setError('Failed to load popular movies');
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
@@ -33,12 +35,14 @@ const MovieList = () => {
     getPopularMovies();
   }, [setPopularMovies, setIsLoading, setError]);
 
-  const displayMovies = searchResults.length > 0 ? searchResults : popularMovies;
-  const title = searchResults.length > 0 
+  // Vérification de sécurité avant d'utiliser .length
+  const displayMovies = searchResults?.length > 0 ? searchResults : (popularMovies || []);
+  const title = searchResults?.length > 0 
     ? `Search Results (${searchResults.length})` 
     : 'Popular Movies';
 
-  if (isLoading && displayMovies.length === 0) {
+  // État de chargement
+  if (isLoading && (!displayMovies || displayMovies.length === 0)) {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
@@ -53,26 +57,27 @@ const MovieList = () => {
       
       {error && (
         <div className="error-container">
-          <p>{error}</p>
+          <p>⚠️ {error}</p>
         </div>
       )}
       
       <div className="movie-list-header">
         <h2>{title}</h2>
-        {searchResults.length > 0 && (
+        {searchResults?.length > 0 && (
           <button 
             className="clear-search-btn"
-            onClick={() => useMovieStore.getState().clearSearch()}
+            onClick={clearSearch}
           >
-            Clear Search
+            ✕ Clear Search
           </button>
         )}
       </div>
       
-      {displayMovies.length === 0 ? (
+      {!displayMovies || displayMovies.length === 0 ? (
         <div className="no-results">
-          <p>No movies found</p>
+          <p>🎬 No movies found</p>
           {searchQuery && <p>Try searching for something else</p>}
+          {!searchQuery && <p>Check back later for new movies</p>}
         </div>
       ) : (
         <div className="movie-grid">

@@ -1,0 +1,33 @@
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+}
+
+.favorite-btn.active {
+  background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
+  border-color: transparent;
+  color: white;
+}
+
+.heart-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.favorite-btn:hover .heart-icon {
+  transform: scale(1.2);
+}

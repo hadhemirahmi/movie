@@ -1,0 +1,84 @@
+/* styles/themes.css */
+
+:root {
+  /* Dark theme (default) */
+  --primary-50: #e3f2ff;
+  --primary-100: #b8e0ff;
+  --primary-200: #8accff;
+  --primary-300: #5cb8ff;
+  --primary-400: #2ea8ff;
+  --primary-500: #00a8ff;
+  --primary-600: #0097e6;
+  --primary-700: #0082cc;
+  --primary-800: #006bb3;
+  --primary-900: #005499;
+
+  --secondary-500: #ff6b6b;
+  --secondary-600: #ff5252;
+  --secondary-700: #ff3838;
+
+  /* Dark theme backgrounds */
+  --bg-primary: #0f0c29;
+  --bg-secondary: #1a1a2e;
+  --bg-card: linear-gradient(145deg, #1a1a2e, #16213e);
+  --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  --bg-input: #1a1a2e;
+
+  /* Dark theme text */
+  --text-primary: #ffffff;
+  --text-secondary: #aaa;
+  --text-muted: #666;
+
+  --border-color: rgba(0, 168, 255, 0.1);
+  --bg-hint: rgba(255, 255, 255, 0.05);
+  
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-primary: rgba(0, 168, 255, 0.3);
+  --shadow-secondary: rgba(255, 107, 107, 0.3);
+}
+
+/* Light theme - Fond blanc, cartes bleutées, texte noir */
+[data-theme="light"] {
+  --primary-50: #005499;
+  --primary-100: #006bb3;
+  --primary-200: #0082cc;
+  --primary-300: #0097e6;
+  --primary-400: #00a8ff;
+  --primary-500: #2ea8ff;
+  --primary-600: #5cb8ff;
+  --primary-700: #8accff;
+  --primary-800: #b8e0ff;
+  --primary-900: #e3f2ff;
+
+  --secondary-500: #ff5252;
+  --secondary-600: #ff6b6b;
+  --secondary-700: #ff8585;
+
+  /* Light theme - Fond blanc */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0f7ff; /* Bleu très clair */
+  --bg-card: linear-gradient(145deg, #e6f0ff80, #d4e4ff); /* Cartes bleutées */
+  --bg-gradient: linear-gradient(135deg, #ffffff, #f0f7ff, #e6f0ff);
+  --bg-input: #ffffff;
+
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+
+
+  --border-color: rgba(0, 100, 200, 0.2);
+  --bg-hint: rgba(0, 100, 200, 0.05);
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-primary: rgba(46, 168, 255, 0.3);
+  --shadow-secondary: rgba(255, 82, 82, 0.3);
+}
+
+
+* {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              background-image 0.3s ease;
+}

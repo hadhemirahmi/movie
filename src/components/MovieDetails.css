@@ -1,60 +1,440 @@
-.movie-details-overlay {
+/* MovieDetails.css */
+
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --overlay-dark-start: 0.95;
+  --overlay-dark-mid: 0.85;
+  --overlay-dark-end: 0.7;
+}
+
+/* ===== BACKDROP ET OVERLAY ===== */
+.movie-backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
 }
 
+.backdrop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+
+/* ===== THÈME SOMBRE (overlay noir) ===== */
+[data-theme="dark"] .backdrop-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.85) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* ===== THÈME CLAIR (overlay blanc) ===== */
+[data-theme="light"] .backdrop-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+}
+
+/* Option alternative - fond blanc uni */
+[data-theme="light"] .backdrop-overlay.white-solid {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Option avec léger dégradé bleuté */
+[data-theme="light"] .backdrop-overlay.blue-tint {
+  background: linear-gradient(
+    to right,
+    rgba(240, 247, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(240, 247, 255, 0.85) 100%
+  );
+}
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+.details-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Bouton retour */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, var(--primary-500, #00a8ff), var(--primary-600, #0097e6));
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 168, 255, 0.3);
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 168, 255, 0.4);
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
 .movie-details-content {
-  background-color: #1a242f00;
-  border-radius: 30px;
-  max-width: 800px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Poster */
+.movie-poster-section {
   position: relative;
 }
 
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.close-button:hover {
-  color: #00a8ff;
-}
-
-.movie-backdrop {
+.details-poster {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-.movie-details-body {
-  padding: 20px;
+/* ===== THÈME CLAIR - Contenu principal ===== */
+[data-theme="light"] .movie-details-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
 }
 
-.movie-overview {
-  line-height: 1.6;
-  color: #ccc;
+[data-theme="light"] .back-button {
+  background: linear-gradient(45deg, #0066cc, #0052a3);
+  color: white;
 }
 
+[data-theme="light"] .details-poster {
+  box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
+}
+
+/* ===== HEADER DU FILM ===== */
+.movie-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--border-color, rgba(0, 168, 255, 0.1));
+}
+
+.movie-header .movie-title {
+  flex: 1;
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary, #ffffff);
+}
+
+.movie-header .favorite-btn {
+  min-width: 160px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* ===== THÈME CLAIR - Header ===== */
+[data-theme="light"] .movie-header {
+  border-bottom: 2px solid rgba(0, 102, 204, 0.2);
+}
+
+[data-theme="light"] .movie-header .movie-title {
+  color: #0066cc;
+  text-shadow: 0 2px 4px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="light"] .movie-header .favorite-btn {
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  border: 2px solid #0066cc;
+  color: #0066cc;
+}
+
+[data-theme="light"] .movie-header .favorite-btn:hover {
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  color: white;
+}
+
+[data-theme="light"] .movie-header .favorite-btn.active {
+  background: linear-gradient(135deg, #ff6b6b, #ff5252);
+  color: white;
+}
+
+/* Tagline */
+.movie-tagline {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-secondary, #aaa);
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="light"] .movie-tagline {
+  color: #333333;
+}
+
+/* Métadonnées */
 .movie-meta {
   display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  color: #aaa;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.meta-item {
+  padding: 0.5rem 1rem;
+  background: rgba(0, 168, 255, 0.1);
+  border-radius: 25px;
+  font-size: 0.95rem;
+  border: 1px solid rgba(0, 168, 255, 0.3);
+  color: var(--text-primary, #ffffff);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.meta-item.rating {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.meta-item.votes {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== THÈME CLAIR - Métadonnées ===== */
+[data-theme="light"] .meta-item {
+  background: #f0f7ff;
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  color: #333333;
+}
+
+[data-theme="light"] .meta-item.rating {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  color: #b8860b;
+}
+
+[data-theme="light"] .meta-item.votes {
+  background: #f0f7ff;
+  border-color: rgba(0, 102, 204, 0.2);
+  color: #333333;
+}
+
+/* Genres */
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.genre-tag {
+  padding: 0.4rem 1rem;
+  background: linear-gradient(45deg, var(--secondary-500, #ff6b6b), var(--secondary-600, #ff5252));
+  color: white;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Synopsis */
+.movie-overview {
+  margin-bottom: 2rem;
+}
+
+.movie-overview h3 {
+  color: var(--primary-500, #00a8ff);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.movie-overview h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-500, #00a8ff), transparent);
+  border-radius: 2px;
+}
+
+.movie-overview p {
+  line-height: 1.8;
+  color: var(--text-secondary, #ddd);
+  font-size: 1rem;
+}
+
+/* ===== THÈME CLAIR - Synopsis ===== */
+[data-theme="light"] .movie-overview h3 {
+  color: #0066cc;
+}
+
+[data-theme="light"] .movie-overview h3::after {
+  background: linear-gradient(90deg, #0066cc, transparent);
+}
+
+[data-theme="light"] .movie-overview p {
+  color: #333333;
+}
+
+/* Bouton trailer */
+.trailer-button {
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, var(--secondary-500, #ff6b6b), var(--secondary-600, #ff5252));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== THÈME CLAIR - Bouton trailer ===== */
+[data-theme="light"] .trailer-button {
+  background: linear-gradient(45deg, #0066cc, #0052a3);
+}
+
+[data-theme="light"] .trailer-button:hover {
+  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+}
+
+/* Trailer container */
+.trailer-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-top: 1.5rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.trailer-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .movie-details-content {
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    padding: 25px;
+  }
+  
+  .movie-header .movie-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-details-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .movie-poster-section {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .movie-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .movie-header .movie-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .movie-header .favorite-btn {
+    width: 100%;
+  }
+  
+  .movie-meta {
+    justify-content: center;
+  }
+  
+  .movie-genres {
+    justify-content: center;
+  }
+  
+  .movie-overview {
+    text-align: center;
+  }
+  
+  .movie-overview h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .trailer-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-header .movie-title {
+    font-size: 1.5rem;
+  }
+  
+  .meta-item {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .movie-overview p {
+    font-size: 0.95rem;
+  }
 }

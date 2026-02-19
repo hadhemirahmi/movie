@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useMovieStore from '../store/movieStore';
-import { searchMovies } from '../services/tmdb';
+import useMovieStore from '../../store/movieStore';
+import { searchMovies } from '../../services/tmdb';
 import './SearchBar.css';
 
 const SearchBar = () => {
